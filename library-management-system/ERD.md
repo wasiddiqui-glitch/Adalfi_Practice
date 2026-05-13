@@ -22,4 +22,5 @@ erDiagram
 
     User ||--o{ UserBook : "checks out"
     Book ||--o{ UserBook : "checked out by"
+    User }o--o{ Book : "many-to-many (via UserBook)"
 ```
