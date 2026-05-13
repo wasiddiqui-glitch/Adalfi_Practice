@@ -1,3 +1,4 @@
+using LibraryManagement.API.DTOs;
 using LibraryManagement.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,19 @@ public class BooksController : ControllerBase
         _bookService = bookService;
     }
 
-    // GET /api/books — all books available in the library 
+    // GET /api/books — all books with copy availability counts
     [HttpGet]
-    public async Task<IActionResult> GetAvailableBooks()
+    public async Task<IActionResult> GetBooks()
     {
         var books = await _bookService.GetAvailableBooksAsync();
+        return Ok(books);
+    }
+
+    // GET /api/books/faulty — books that have at least one faulty copy
+    [HttpGet("faulty")]
+    public async Task<IActionResult> GetFaultyBooks()
+    {
+        var books = await _bookService.GetFaultyBooksAsync();
         return Ok(books);
     }
 
@@ -34,15 +43,15 @@ public class BooksController : ControllerBase
         return Ok(books);
     }
 
-    // POST /api/books/{id}/checkout — borrow a book
+    // POST /api/books/{id}/checkout — borrow a book (picks next available copy)
     [HttpPost("{id}/checkout")]
     public async Task<IActionResult> Checkout(int id)
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var success = await _bookService.CheckoutBookAsync(id, userId);
         if (!success)
-            return BadRequest(new { message = "Book is currently unavailable or already borrowed." });
-        return Ok(new { message = "Book checked out successfully." });
+            return BadRequest(new { message = "No available copies or you already have this book." });
+        return Ok(new { message = "Book checked out successfully. Due in 14 days." });
     }
 
     // POST /api/books/{id}/return — return a borrowed book
@@ -54,5 +63,15 @@ public class BooksController : ControllerBase
         if (!success)
             return BadRequest(new { message = "You don't have this book." });
         return Ok(new { message = "Book returned successfully." });
+    }
+
+    // POST /api/books/{id}/report-faulty — report the specific copy you have as faulty
+    [HttpPost("{id}/report-faulty")]
+    public async Task<IActionResult> ReportFaulty(int id, [FromBody] MarkFaultyRequest request)
+    {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var success = await _bookService.MarkFaultyAsync(id, userId, request.Reason);
+        if (!success) return BadRequest(new { message = "You don't have this book checked out." });
+        return Ok(new { message = "Copy reported as faulty. Thank you — an admin will review it." });
     }
 }

@@ -35,7 +35,7 @@ public class AuthService : IAuthService
         _context.Users.Add(user);
         await _context.SaveChangesAsync(); 
 
-        return new AuthResponse(GenerateToken(user), user.Username, user.Id);
+        return new AuthResponse(GenerateToken(user), user.Username, user.Id, user.IsAdmin);
     }
 
     public async Task<AuthResponse?> LoginAsync(LoginRequest request)
@@ -44,7 +44,7 @@ public class AuthService : IAuthService
         if (user == null || !VerifyPassword(request.Password, user.PasswordHash))
             return null;
 
-        return new AuthResponse(GenerateToken(user), user.Username, user.Id);
+        return new AuthResponse(GenerateToken(user), user.Username, user.Id, user.IsAdmin);
     }
 
     private string GenerateToken(User user)
@@ -54,7 +54,8 @@ public class AuthService : IAuthService
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
         };
 
         var token = new JwtSecurityToken(

@@ -6,6 +6,7 @@ export default function BookList() {
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(true)
   const [message, setMessage] = useState('')
+  const [query, setQuery] = useState('')
 
   const fetchBooks = async () => {
     try {
@@ -25,23 +26,68 @@ export default function BookList() {
       fetchBooks()
       setTimeout(() => setMessage(''), 3000)
     } catch {
-      setMessage('Could not borrow this book.')
+      setMessage('No copies available or you already have this book.')
       setTimeout(() => setMessage(''), 3000)
     }
   }
 
   if (loading) return <div className="loading">Loading books...</div>
 
+  const q = query.trim().toLowerCase()
+  const filtered = q
+    ? books.filter(b =>
+        b.title.toLowerCase().includes(q) ||
+        b.author.toLowerCase().includes(q) ||
+        b.genre.toLowerCase().includes(q) ||
+        String(b.id).includes(q)
+      )
+    : books
+
+  const grouped = filtered.reduce((acc, book) => {
+    const letter = book.title[0].toUpperCase()
+    if (!acc[letter]) acc[letter] = []
+    acc[letter].push(book)
+    return acc
+  }, {})
+
+  const letters = Object.keys(grouped).sort()
+
   return (
     <div className="page">
-      <h2>Available Books ({books.length})</h2>
+      <h2>Library Collection ({books.length} titles)</h2>
+      <div className="search-bar">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search by title, author, genre or book ID..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        {query && (
+          <button className="search-clear" onClick={() => setQuery('')}>&#x2715;</button>
+        )}
+      </div>
+      {query && (
+        <p className="search-results-label">
+          {filtered.length === 0
+            ? 'No books match your search.'
+            : `${filtered.length} result${filtered.length !== 1 ? 's' : ''} for "${query}"`}
+        </p>
+      )}
       {message && <div className="toast">{message}</div>}
-      {books.length === 0 ? (
-        <p className="empty">All books have been borrowed. Check back later!</p>
+      {filtered.length === 0 && !query ? (
+        <p className="empty">No books in the library.</p>
       ) : (
-        <div className="book-grid">
-          {books.map((book) => (
-            <BookCard key={book.id} book={book} onCheckout={handleCheckout} />
+        <div className="letter-grid">
+          {letters.map((letter) => (
+            <div key={letter} className="letter-section">
+              <div className="letter-heading">{letter}</div>
+              <div className="book-grid">
+                {grouped[letter].map((book) => (
+                  <BookCard key={book.id} book={book} onCheckout={handleCheckout} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       )}

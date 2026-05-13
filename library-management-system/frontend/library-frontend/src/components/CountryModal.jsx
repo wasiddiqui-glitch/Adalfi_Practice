@@ -7,7 +7,7 @@ export default function CountryModal({ book, onClose }) {
           <h2>{book.title}</h2>
           <span className="modal-id">Book #{book.bookId}</span>
         </div>
-        <p className="modal-body">{book.countryOverview}</p>
+        <p className="modal-body">{book.description}</p>
       </div>
     </div>
   )
