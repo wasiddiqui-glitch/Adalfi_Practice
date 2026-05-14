@@ -6,6 +6,7 @@ import BookList from './components/BookList'
 import SavedBooks from './components/SavedBooks'
 import FaultyBooks from './components/FaultyBooks'
 import AdminPage from './components/AdminPage'
+import Reservations from './components/Reservations'
 import Navbar from './components/Navbar'
 
 function ProtectedRoute({ children }) {
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
         <Route path="/" element={<ProtectedRoute><BookList /></ProtectedRoute>} />
         <Route path="/saved" element={<ProtectedRoute><SavedBooks /></ProtectedRoute>} />
+        <Route path="/reservations" element={<ProtectedRoute><Reservations /></ProtectedRoute>} />
         <Route path="/faulty" element={<ProtectedRoute><FaultyBooks /></ProtectedRoute>} />
         <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
         <Route path="*" element={<Navigate to="/" />} />

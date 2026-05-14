@@ -48,9 +48,8 @@ public class BooksController : ControllerBase
     public async Task<IActionResult> Checkout(int id)
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var success = await _bookService.CheckoutBookAsync(id, userId);
-        if (!success)
-            return BadRequest(new { message = "No available copies or you already have this book." });
+        var (success, error) = await _bookService.CheckoutBookAsync(id, userId);
+        if (!success) return BadRequest(new { message = error });
         return Ok(new { message = "Book checked out successfully. Due in 14 days." });
     }
 
@@ -73,5 +72,14 @@ public class BooksController : ControllerBase
         var success = await _bookService.MarkFaultyAsync(id, userId, request.Reason);
         if (!success) return BadRequest(new { message = "You don't have this book checked out." });
         return Ok(new { message = "Copy reported as faulty. Thank you — an admin will review it." });
+    }
+
+    // GET /api/books/history — checkout history for the logged-in user
+    [HttpGet("history")]
+    public async Task<IActionResult> GetHistory()
+    {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var history = await _bookService.GetCheckoutHistoryAsync(userId);
+        return Ok(history);
     }
 }

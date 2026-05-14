@@ -13,6 +13,7 @@ export default function Navbar() {
       <div className="nav-links">
         <Link to="/" className={isActive('/')}>Browse Books</Link>
         <Link to="/saved" className={isActive('/saved')}>My Books</Link>
+        <Link to="/reservations" className={isActive('/reservations')}>Waitlist</Link>
         <Link to="/faulty" className={isActive('/faulty')}>Faulty Books</Link>
         {user.isAdmin && (
           <Link to="/admin" className={`admin-link ${isActive('/admin')}`}>Admin Panel</Link>

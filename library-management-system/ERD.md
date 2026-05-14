@@ -6,7 +6,7 @@ erDiagram
         string PasswordHash
         bool IsAdmin
     }
-
+    
     Book {
         int Id PK
         string Title
@@ -31,10 +31,22 @@ erDiagram
         int BookCopyId FK
         datetime CheckedOutAt
         datetime DueDate
+        datetime ReturnedAt "nullable"
+    }
+
+    Reservation {
+        int Id PK
+        int UserId FK
+        int BookId FK
+        datetime ReservedAt
+        datetime CancelledAt "nullable"
+        datetime FulfilledAt "nullable"
     }
 
     User ||--o{ UserBook : "checks out"
     Book ||--o{ BookCopy : "has copies"
     Book ||--o{ UserBook : "checked out via"
     BookCopy ||--o| UserBook : "tracked by"
+    User ||--o{ Reservation : "places"
+    Book ||--o{ Reservation : "is reserved"
 ```

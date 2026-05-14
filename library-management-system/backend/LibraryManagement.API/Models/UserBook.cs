@@ -11,4 +11,5 @@ public class UserBook
     public BookCopy BookCopy { get; set; } = null!;
     public DateTime CheckedOutAt { get; set; } = DateTime.UtcNow;
     public DateTime DueDate { get; set; }
+    public DateTime? ReturnedAt { get; set; }
 }

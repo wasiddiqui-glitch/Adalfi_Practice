@@ -1,37 +1,67 @@
 import { useState, useEffect } from 'react'
-import { booksApi } from '../services/api'
+import { booksApi, reservationsApi } from '../services/api'
 import BookCard from './BookCard'
 
 export default function BookList() {
   const [books, setBooks] = useState([])
+  const [reservations, setReservations] = useState([])
   const [loading, setLoading] = useState(true)
   const [message, setMessage] = useState('')
   const [query, setQuery] = useState('')
 
-  const fetchBooks = async () => {
+  const fetchAll = async () => {
     try {
-      const { data } = await booksApi.getAvailable()
-      setBooks(data)
+      const [booksRes, resvRes] = await Promise.all([
+        booksApi.getAvailable(),
+        reservationsApi.getMyReservations(),
+      ])
+      setBooks(booksRes.data)
+      setReservations(resvRes.data)
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => { fetchBooks() }, [])
+  useEffect(() => { fetchAll() }, [])
+
+  const showMessage = (msg) => {
+    setMessage(msg)
+    setTimeout(() => setMessage(''), 3000)
+  }
 
   const handleCheckout = async (bookId) => {
     try {
       await booksApi.checkout(bookId)
-      setMessage('Book borrowed! Check your saved books.')
-      fetchBooks()
-      setTimeout(() => setMessage(''), 3000)
+      showMessage('Book borrowed! Check your saved books.')
+      fetchAll()
+    } catch (e) {
+      showMessage(e.response?.data?.message || 'Could not borrow this book.')
+    }
+  }
+
+  const handleReserve = async (bookId) => {
+    try {
+      await reservationsApi.reserve(bookId)
+      showMessage("You've been added to the waitlist.")
+      fetchAll()
+    } catch (e) {
+      showMessage(e.response?.data?.message || 'Could not join the waitlist.')
+    }
+  }
+
+  const handleCancelReservation = async (reservationId) => {
+    try {
+      await reservationsApi.cancel(reservationId)
+      showMessage('Reservation cancelled.')
+      fetchAll()
     } catch {
-      setMessage('No copies available or you already have this book.')
-      setTimeout(() => setMessage(''), 3000)
+      showMessage('Could not cancel reservation.')
     }
   }
 
   if (loading) return <div className="loading">Loading books...</div>
+
+  const reservationsByBookId = Object.fromEntries(reservations.map(r => [r.bookId, r]))
 
   const q = query.trim().toLowerCase()
   const filtered = q
@@ -84,7 +114,14 @@ export default function BookList() {
               <div className="letter-heading">{letter}</div>
               <div className="book-grid">
                 {grouped[letter].map((book) => (
-                  <BookCard key={book.id} book={book} onCheckout={handleCheckout} />
+                  <BookCard
+                    key={book.id}
+                    book={book}
+                    onCheckout={handleCheckout}
+                    onReserve={handleReserve}
+                    onCancelReservation={handleCancelReservation}
+                    reservation={reservationsByBookId[book.id] || null}
+                  />
                 ))}
               </div>
             </div>

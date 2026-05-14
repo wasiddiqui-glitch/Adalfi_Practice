@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<Book> Books => Set<Book>();
     public DbSet<BookCopy> BookCopies => Set<BookCopy>();
     public DbSet<UserBook> UserBooks => Set<UserBook>();
+    public DbSet<Reservation> Reservations => Set<Reservation>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,5 +34,15 @@ public class AppDbContext : DbContext
             .HasOne(ub => ub.BookCopy)
             .WithMany()
             .HasForeignKey(ub => ub.BookCopyId);
+
+        modelBuilder.Entity<Reservation>()
+            .HasOne(r => r.User)
+            .WithMany()
+            .HasForeignKey(r => r.UserId);
+
+        modelBuilder.Entity<Reservation>()
+            .HasOne(r => r.Book)
+            .WithMany(b => b.Reservations)
+            .HasForeignKey(r => r.BookId);
     }
 }

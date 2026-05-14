@@ -3,8 +3,11 @@ import { booksApi } from '../services/api'
 import BookDetailModal from './CountryModal'
 
 export default function SavedBooks() {
+  const [view, setView] = useState('current')
   const [books, setBooks] = useState([])
+  const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
+  const [historyLoading, setHistoryLoading] = useState(false)
   const [selectedBook, setSelectedBook] = useState(null)
   const [reportingBook, setReportingBook] = useState(null)
   const [faultyReason, setFaultyReason] = useState('')
@@ -19,7 +22,23 @@ export default function SavedBooks() {
     }
   }
 
+  const fetchHistory = async () => {
+    setHistoryLoading(true)
+    try {
+      const { data } = await booksApi.getHistory()
+      setHistory(data)
+    } finally {
+      setHistoryLoading(false)
+    }
+  }
+
   useEffect(() => { fetchBooks() }, [])
+
+  useEffect(() => {
+    if (view === 'history' && history.length === 0) {
+      fetchHistory()
+    }
+  }, [view])
 
   const showMessage = (msg) => {
     setMessage(msg)
@@ -31,6 +50,7 @@ export default function SavedBooks() {
       await booksApi.returnBook(bookId)
       showMessage('Book returned successfully.')
       fetchBooks()
+      if (view === 'history') fetchHistory()
     } catch {
       showMessage('Could not return this book.')
     }
@@ -49,50 +69,108 @@ export default function SavedBooks() {
     }
   }
 
-  const isOverdue = (dueDate) => new Date(dueDate) < new Date()
-
   if (loading) return <div className="loading">Loading your books...</div>
 
   return (
     <div className="page">
-      <h2>My Borrowed Books ({books.length})</h2>
-      {message && <div className="toast">{message}</div>}
-      {books.length === 0 ? (
-        <p className="empty">You haven&apos;t borrowed any books yet. Browse the library to get started!</p>
-      ) : (
-        <div className="book-grid">
-          {books.map((book) => (
-            <div key={book.id} className={`book-card saved ${isOverdue(book.dueDate) ? 'overdue' : ''}`}>
-              <div className="book-id">Book #{book.bookId}</div>
-              <h3 className="book-title">{book.title}</h3>
-              <div className="book-meta">
-                <span className="book-author">by {book.author}</span>
-                <span className="book-genre">{book.genre}</span>
-              </div>
-              <div className="copy-tag">
-                Copy {book.copyNumber} of 20 &middot; ID #{book.bookCopyId}
-              </div>
-              <div className="book-dates">
-                <p className="book-date">Borrowed: {new Date(book.checkedOutAt).toLocaleDateString()}</p>
-                <p className="book-date">
-                  Due: {new Date(book.dueDate).toLocaleDateString()}
-                  {isOverdue(book.dueDate) && <span className="overdue-badge">OVERDUE</span>}
-                </p>
-              </div>
-              <div className="book-actions">
-                <button className="btn-info" onClick={() => setSelectedBook(book)}>
-                  Book Overview
-                </button>
-                <button className="btn-return" onClick={() => handleReturn(book.bookId)}>
-                  Return Book
-                </button>
-                <button className="btn-report-faulty" onClick={() => setReportingBook(book)}>
-                  Report This Copy as Faulty
-                </button>
-              </div>
-            </div>
-          ))}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+        <h2 style={{ margin: 0 }}>My Books</h2>
+        <div className="tab-buttons" style={{ marginBottom: 0 }}>
+          <button
+            className={`tab-btn ${view === 'current' ? 'active' : ''}`}
+            onClick={() => setView('current')}
+          >
+            Currently Borrowed ({books.length})
+          </button>
+          <button
+            className={`tab-btn ${view === 'history' ? 'active' : ''}`}
+            onClick={() => setView('history')}
+          >
+            Return History
+          </button>
         </div>
+      </div>
+
+      {message && <div className="toast">{message}</div>}
+
+      {view === 'current' && (
+        books.length === 0 ? (
+          <p className="empty">You haven&apos;t borrowed any books yet. Browse the library to get started!</p>
+        ) : (
+          <div className="book-grid">
+            {books.map((book) => (
+              <div key={book.id} className={`book-card saved ${book.isOverdue ? 'overdue' : ''}`}>
+                <div className="book-id">Book #{book.bookId}</div>
+                <h3 className="book-title">{book.title}</h3>
+                <div className="book-meta">
+                  <span className="book-author">by {book.author}</span>
+                  <span className="book-genre">{book.genre}</span>
+                </div>
+                <div className="copy-tag">
+                  Copy {book.copyNumber} &middot; ID #{book.bookCopyId}
+                </div>
+                <div className="book-dates">
+                  <p className="book-date">Borrowed: {new Date(book.checkedOutAt).toLocaleDateString()}</p>
+                  <p className="book-date">
+                    Due: {new Date(book.dueDate).toLocaleDateString()}
+                    {book.isOverdue && <span className="overdue-badge">OVERDUE</span>}
+                  </p>
+                </div>
+                <div className="book-actions">
+                  <button className="btn-info" onClick={() => setSelectedBook(book)}>
+                    Book Overview
+                  </button>
+                  <button className="btn-return" onClick={() => handleReturn(book.bookId)}>
+                    Return Book
+                  </button>
+                  <button className="btn-report-faulty" onClick={() => setReportingBook(book)}>
+                    Report This Copy as Faulty
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )
+      )}
+
+      {view === 'history' && (
+        historyLoading ? (
+          <div className="loading">Loading history...</div>
+        ) : history.length === 0 ? (
+          <p className="empty">No return history yet.</p>
+        ) : (
+          <div className="book-grid">
+            {history.map((book) => {
+              const returnedLate = new Date(book.returnedAt) > new Date(book.dueDate)
+              return (
+                <div key={book.id} className="book-card saved">
+                  <div className="book-id">Book #{book.bookId}</div>
+                  <h3 className="book-title">{book.title}</h3>
+                  <div className="book-meta">
+                    <span className="book-author">by {book.author}</span>
+                    <span className="book-genre">{book.genre}</span>
+                  </div>
+                  <div className="copy-tag">
+                    Copy {book.copyNumber} &middot; ID #{book.bookCopyId}
+                  </div>
+                  <div className="book-dates">
+                    <p className="book-date">Borrowed: {new Date(book.checkedOutAt).toLocaleDateString()}</p>
+                    <p className="book-date">Due: {new Date(book.dueDate).toLocaleDateString()}</p>
+                    <p className="book-date">
+                      Returned: {new Date(book.returnedAt).toLocaleDateString()}
+                      {returnedLate && <span className="overdue-badge">RETURNED LATE</span>}
+                    </p>
+                  </div>
+                  <div className="book-actions">
+                    <button className="btn-info" onClick={() => setSelectedBook(book)}>
+                      Book Overview
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )
       )}
 
       {selectedBook && (

@@ -9,4 +9,5 @@ public class Book
     public string Description { get; set; } = string.Empty;
     public ICollection<BookCopy> Copies { get; set; } = [];
     public ICollection<UserBook> UserBooks { get; set; } = [];
+    public ICollection<Reservation> Reservations { get; set; } = [];
 }
