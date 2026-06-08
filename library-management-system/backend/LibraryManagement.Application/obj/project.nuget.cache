@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "Scw3gT21MV0=",
+  "success": true,
+  "projectFilePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/LibraryManagement.Application.csproj",
+  "expectedPackageFiles": [
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/10.0.0/microsoft.aspnetcore.authentication.jwtbearer.10.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.abstractions/8.0.1/microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.0.1/microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.logging/8.0.1/microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.protocols/8.0.1/microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.0.1/microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.tokens/8.0.1/microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/LibraryManagement.Application.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/LibraryManagement.Application.csproj",
+      "targetGraphs": []
+    }
+  ]
+}

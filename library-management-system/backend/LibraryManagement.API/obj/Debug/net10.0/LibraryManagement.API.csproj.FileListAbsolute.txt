@@ -64,3 +64,10 @@
 /Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/runtimes/win-x64/native/krbcc64.dll
 /Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/runtimes/win/lib/net9.0/System.Windows.Extensions.dll
 /Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/obj/Debug/net10.0/LibraryManagement.API.sourcelink.json
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/LibraryManagement.Application.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/LibraryManagement.Domain.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/LibraryManagement.Infrastructure.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/LibraryManagement.Application.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/LibraryManagement.Infrastructure.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.API/bin/Debug/net10.0/LibraryManagement.Domain.pdb

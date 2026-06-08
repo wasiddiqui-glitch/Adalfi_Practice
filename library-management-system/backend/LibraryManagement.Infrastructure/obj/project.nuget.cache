@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "dgSpecHash": "B+ul+ZEpwzQ=",
+  "success": true,
+  "projectFilePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/Users/waleedsiddiqi/.nuget/packages/bouncycastle.cryptography/2.6.2/bouncycastle.cryptography.2.6.2.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/google.protobuf/3.32.0/google.protobuf.3.32.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/k4os.compression.lz4/1.3.8/k4os.compression.lz4.1.3.8.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/k4os.compression.lz4.streams/1.3.8/k4os.compression.lz4.streams.1.3.8.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/k4os.hash.xxhash/1.0.8/k4os.hash.xxhash.1.0.8.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/10.0.0/microsoft.aspnetcore.authentication.jwtbearer.10.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/10.0.0/microsoft.aspnetcore.identity.entityframeworkcore.10.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.entityframeworkcore/10.0.1/microsoft.entityframeworkcore.10.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.1/microsoft.entityframeworkcore.abstractions.10.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.1/microsoft.entityframeworkcore.analyzers.10.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.1/microsoft.entityframeworkcore.relational.10.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.abstractions/8.0.1/microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.0.1/microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.logging/8.0.1/microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.protocols/8.0.1/microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.0.1/microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/microsoft.identitymodel.tokens/8.0.1/microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/mysql.data/9.6.0/mysql.data.9.6.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/mysql.entityframeworkcore/10.0.1/mysql.entityframeworkcore.10.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/system.configuration.configurationmanager/9.0.0/system.configuration.configurationmanager.9.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/system.security.cryptography.protecteddata/9.0.0/system.security.cryptography.protecteddata.9.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/system.security.permissions/9.0.0/system.security.permissions.9.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/system.windows.extensions/9.0.0/system.windows.extensions.9.0.0.nupkg.sha512",
+    "/Users/waleedsiddiqi/.nuget/packages/zstdsharp.port/0.8.6/zstdsharp.port.0.8.6.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1801",
+      "level": "Warning",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1801",
+      "level": "Warning",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "MySql.Data 9.6.0 depends on System.Configuration.ConfigurationManager (>= 8.0.0) but System.Configuration.ConfigurationManager 8.0.0 was not found. System.Configuration.ConfigurationManager 9.0.0 was resolved instead.",
+      "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "libraryId": "System.Configuration.ConfigurationManager",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "MySql.Data 9.6.0 depends on System.Security.Permissions (>= 8.0.0) but System.Security.Permissions 8.0.0 was not found. System.Security.Permissions 9.0.0 was resolved instead.",
+      "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "libraryId": "System.Security.Permissions",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "targetGraphs": []
+    }
+  ]
+}

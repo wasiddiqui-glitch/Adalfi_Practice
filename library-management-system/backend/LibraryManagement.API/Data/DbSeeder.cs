@@ -1,22 +1,20 @@
 using LibraryManagement.API.Models;
-using System.Security.Cryptography;
-using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace LibraryManagement.API.Data;
 
 public static class DbSeeder
 {
-    public static void Seed(AppDbContext context)
+    public static async Task SeedAsync(AppDbContext context, UserManager<ApplicationUser> userManager)
     {
         if (!context.Users.Any(u => u.IsAdmin))
         {
-            context.Users.Add(new User
+            var admin = new ApplicationUser
             {
-                Username = "admin",
-                PasswordHash = HashPassword("admin123"),
+                UserName = "admin",
                 IsAdmin = true
-            });
-            context.SaveChanges();
+            };
+            await userManager.CreateAsync(admin, "Admin@1234");
         }
 
         if (context.Books.Any()) return;
@@ -49,7 +47,7 @@ public static class DbSeeder
 
         foreach (var (title, author, genre, description) in bookData)
         {
-            var book = new Book
+            context.Books.Add(new Book
             {
                 Title = title,
                 Author = author,
@@ -58,17 +56,9 @@ public static class DbSeeder
                 Copies = Enumerable.Range(1, 20)
                     .Select(n => new BookCopy { CopyNumber = n })
                     .ToList()
-            };
-            context.Books.Add(book);
+            });
         }
 
-        context.SaveChanges();
-    }
-
-    private static string HashPassword(string password)
-    {
-        using var sha256 = SHA256.Create();
-        var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-        return Convert.ToBase64String(hash);
+        await context.SaveChangesAsync();
     }
 }

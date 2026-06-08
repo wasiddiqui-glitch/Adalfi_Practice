@@ -1,5 +1,5 @@
-using LibraryManagement.API.DTOs;
-using LibraryManagement.API.Services;
+using LibraryManagement.Application.DTOs;
+using LibraryManagement.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,7 +58,7 @@ public class AdminController : ControllerBase
     {
         var success = await _bookService.RestoreCopyAsync(id);
         if (!success) return NotFound(new { message = "Copy not found." });
-        return Ok(new { message = "Copy restored to circulation." });
+        return Ok(new { message = "Copy restored to available." });
     }
 
     // GET /api/admin/books/{id}

@@ -1,20 +1,25 @@
 using LibraryManagement.API.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.API.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<User> Users => Set<User>();
     public DbSet<Book> Books => Set<Book>();
     public DbSet<BookCopy> BookCopies => Set<BookCopy>();
     public DbSet<UserBook> UserBooks => Set<UserBook>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
+    public DbSet<Fine> Fines => Set<Fine>();
+    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<BookCopy>()
             .HasOne(bc => bc.Book)
             .WithMany(b => b.Copies)

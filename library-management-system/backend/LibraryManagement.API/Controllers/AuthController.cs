@@ -1,5 +1,6 @@
-using LibraryManagement.API.DTOs;
-using LibraryManagement.API.Services;
+using LibraryManagement.Application.DTOs;
+using LibraryManagement.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.API.Controllers;
@@ -31,5 +32,24 @@ public class AuthController : ControllerBase
         if (result == null)
             return Unauthorized(new { message = "Invalid username or password." });
         return Ok(result);
+    }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh(RefreshRequest request)
+    {
+        var result = await _authService.RefreshAsync(request.RefreshToken, request.UserId);
+        if (result == null)
+            return Unauthorized(new { message = "Invalid or expired refresh token." });
+        return Ok(result);
+    }
+
+    [HttpPost("logout")]
+    [Authorize]
+    public async Task<IActionResult> Logout()
+    {
+        var token = Request.Headers.Authorization.ToString().Replace("Bearer ", "");
+        var success = await _authService.LogoutAsync(token);
+        if (!success) return BadRequest(new { message = "Token already revoked or not found." });
+        return Ok(new { message = "Logged out successfully. Token revoked." });
     }
 }

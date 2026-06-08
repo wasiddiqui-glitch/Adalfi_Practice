@@ -90,6 +90,22 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -485,6 +501,55 @@
         "runtime": {
           "lib/net9.0/ZstdSharp.dll": {}
         }
+      },
+      "LibraryManagement.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LibraryManagement.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LibraryManagement.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryManagement.Application.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "LibraryManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/LibraryManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryManagement.Domain.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "LibraryManagement.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LibraryManagement.Application": "1.0.0",
+          "LibraryManagement.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "10.0.0",
+          "MySql.EntityFrameworkCore": "10.0.1"
+        },
+        "compile": {
+          "bin/placeholder/LibraryManagement.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryManagement.Infrastructure.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -609,6 +674,22 @@
         "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
         "microsoft.aspnetcore.authentication.jwtbearer.10.0.0.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.0": {
+      "sha512": "mH1+58nbX5RWSd8hajSnXSdpQ1MN3oca488Zd+DvKX2nPTAyTVNRzubMV06BmPcjOZ9waLr/AjwcNiCQ8bCscQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
+        "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
+        "microsoft.aspnetcore.identity.entityframeworkcore.10.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore/10.0.1": {
@@ -1380,11 +1461,29 @@
         "zstdsharp.port.0.8.6.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "LibraryManagement.Application/1.0.0": {
+      "type": "project",
+      "path": "../LibraryManagement.Application/LibraryManagement.Application.csproj",
+      "msbuildProject": "../LibraryManagement.Application/LibraryManagement.Application.csproj"
+    },
+    "LibraryManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../LibraryManagement.Domain/LibraryManagement.Domain.csproj",
+      "msbuildProject": "../LibraryManagement.Domain/LibraryManagement.Domain.csproj"
+    },
+    "LibraryManagement.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj",
+      "msbuildProject": "../LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "LibraryManagement.Application >= 1.0.0",
+      "LibraryManagement.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 10.0.0",
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 10.0.0",
       "MySql.EntityFrameworkCore >= 10.0.1",
       "Swashbuckle.AspNetCore >= 7.2.0"
     ]
@@ -1415,7 +1514,14 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/LibraryManagement.Application.csproj": {
+              "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/LibraryManagement.Application.csproj"
+            },
+            "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj": {
+              "projectPath": "/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -1435,6 +1541,10 @@
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[10.0.0, )"
+          },
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[10.0.0, )"
           },

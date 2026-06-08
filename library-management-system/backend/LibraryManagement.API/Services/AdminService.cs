@@ -17,7 +17,7 @@ public class AdminService : IAdminService
     public async Task<IEnumerable<AdminUserDto>> GetAllUsersWithBooksAsync()
     {
         var now = DateTime.UtcNow;
-        var users = await _context.Users.OrderBy(u => u.Username).ToListAsync();
+        var users = await _context.Users.OrderBy(u => u.UserName).ToListAsync();
 
         var activeCheckouts = await _context.UserBooks
             .Where(ub => ub.ReturnedAt == null)
@@ -31,7 +31,7 @@ public class AdminService : IAdminService
 
         return users.Select(u => new AdminUserDto(
             u.Id,
-            u.Username,
+            u.UserName,
             u.IsAdmin,
             checkoutsByUser.TryGetValue(u.Id, out var userCheckouts)
                 ? userCheckouts.Select(ub => new AdminCheckoutDto(
@@ -40,7 +40,7 @@ public class AdminService : IAdminService
                     ub.BookCopyId,
                     ub.BookCopy.CopyNumber,
                     ub.Book.Title,
-                    u.Username,
+                    u.UserName,
                     ub.CheckedOutAt,
                     ub.DueDate,
                     ub.DueDate < now
@@ -64,7 +64,7 @@ public class AdminService : IAdminService
                 ub.BookCopyId,
                 ub.BookCopy.CopyNumber,
                 ub.Book.Title,
-                ub.User.Username,
+                ub.User.UserName,
                 ub.CheckedOutAt,
                 ub.DueDate,
                 ub.DueDate < now
@@ -87,7 +87,7 @@ public class AdminService : IAdminService
                 ub.BookCopyId,
                 ub.BookCopy.CopyNumber,
                 ub.Book.Title,
-                ub.User.Username,
+                ub.User.UserName,
                 ub.CheckedOutAt,
                 ub.DueDate,
                 true

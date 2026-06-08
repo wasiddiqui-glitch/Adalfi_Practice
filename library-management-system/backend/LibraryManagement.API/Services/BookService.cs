@@ -137,6 +137,13 @@ public class BookService : IBookService
         if (userReservation != null)
             userReservation.FulfilledAt = DateTime.UtcNow;
 
+        _context.AuditLogs.Add(new AuditLog
+        {
+            UserId = userId,
+            Action = "Checkout",
+            Details = $"User {userId} checked out BookId {bookId}, CopyId {copy.Id}"
+        });
+
         await _context.SaveChangesAsync();
         return (true, null);
     }
@@ -152,6 +159,32 @@ public class BookService : IBookService
 
         copy.IsCheckedOut = false;
         userBook.ReturnedAt = DateTime.UtcNow;
+
+        var daysOverdue = (int)(DateTime.UtcNow - userBook.DueDate).TotalDays;
+        if (daysOverdue > 0)
+        {
+            _context.Fines.Add(new Fine
+            {
+                UserId = userId,
+                UserBookId = userBook.Id,
+                DaysOverdue = daysOverdue,
+                Amount = daysOverdue * 0.50m
+            });
+            _context.AuditLogs.Add(new AuditLog
+            {
+                UserId = userId,
+                Action = "Fine Issued",
+                Details = $"Fine of ${daysOverdue * 0.50m} issued for BookId {bookId}, {daysOverdue} days overdue"
+            });
+        }
+
+        _context.AuditLogs.Add(new AuditLog
+        {
+            UserId = userId,
+            Action = "Return",
+            Details = $"User {userId} returned BookId {bookId}"
+        });
+
         await _context.SaveChangesAsync();
         return true;
     }

@@ -1,0 +1,12 @@
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/bin/Debug/net10.0/LibraryManagement.Domain.deps.json
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/bin/Debug/net10.0/LibraryManagement.Domain.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/bin/Debug/net10.0/LibraryManagement.Domain.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.AssemblyInfoInputs.cache
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.AssemblyInfo.cs
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.csproj.CoreCompileInputs.cache
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.sourcelink.json
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/refint/LibraryManagement.Domain.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/LibraryManagement.Domain.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Domain/obj/Debug/net10.0/ref/LibraryManagement.Domain.dll

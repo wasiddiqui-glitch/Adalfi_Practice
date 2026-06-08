@@ -1,4 +1,4 @@
-using LibraryManagement.API.Services;
+using LibraryManagement.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

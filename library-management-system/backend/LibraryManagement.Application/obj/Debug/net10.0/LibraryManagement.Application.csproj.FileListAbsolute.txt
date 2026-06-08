@@ -1,0 +1,16 @@
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.csproj.AssemblyReference.cache
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.AssemblyInfoInputs.cache
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.AssemblyInfo.cs
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.csproj.CoreCompileInputs.cache
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.sourcelink.json
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/bin/Debug/net10.0/LibraryManagement.Application.deps.json
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/bin/Debug/net10.0/LibraryManagement.Application.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/bin/Debug/net10.0/LibraryManagement.Application.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/bin/Debug/net10.0/LibraryManagement.Domain.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/bin/Debug/net10.0/LibraryManagement.Domain.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryM.C4F4E017.Up2Date
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/refint/LibraryManagement.Application.dll
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/LibraryManagement.Application.pdb
+/Users/waleedsiddiqi/techlogix_practice/library-management-system/backend/LibraryManagement.Application/obj/Debug/net10.0/ref/LibraryManagement.Application.dll
